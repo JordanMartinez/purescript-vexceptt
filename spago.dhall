@@ -4,9 +4,7 @@ You can edit this file as you like.
 -}
 { name = "my-project"
 , dependencies =
-  [ "console"
-  , "effect"
-  , "psci-support"
+  [ "psci-support"
   , "quickcheck"
   , "quickcheck-laws"
   , "spec"
