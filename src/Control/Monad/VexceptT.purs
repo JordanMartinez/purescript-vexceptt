@@ -21,9 +21,20 @@ import Data.Veither (Veither(..), _veither, veither)
 import Effect.Class (class MonadEffect, liftEffect)
 import Unsafe.Coerce (unsafeCoerce)
 
+-- | Same as `ExceptT`, but uses `Veither` rather than `Either`.
+-- |
+-- | This type has instances for all the type classes that `ExceptT` has
+-- | except for the following type classes:
+-- | - Alt
+-- | - Plus
+-- | - Alternative
+-- | - MonadPlus
+-- |
+-- | Note: throwing and catching errors will need to throw and catch `Variants`.
 newtype VexceptT :: Row Type -> (Type -> Type) -> Type -> Type
 newtype VexceptT errorRows m a = VexceptT (m (Veither errorRows a))
 
+-- | Removes the `VexceptT` newtype wrapper.
 runVexceptT ∷ forall errorRows m a. VexceptT errorRows m a → m (Veither errorRows a)
 runVexceptT (VexceptT m) = m
 
