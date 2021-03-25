@@ -17,7 +17,7 @@ data Either l r
 newtype Veither e r = Veither (Variant ("_" :: a | e))
 
 -- pseudo-code
-type Variant ("_" :: a) = {type : "_", value: a }
+type Variant ("_" :: a) = {type: "_", value: a }
 
 -- # Comparing how errors are stored at runtim
 ExceptV  (pure (Left    (inj _sym error))) :: ExceptV  e m a
@@ -31,7 +31,7 @@ pure (     {type: "error", value: e})  :: VexceptT e m a
 ExceptV  (pure (Right                 a)  :: ExceptV  e m a
 VexceptT (pure (Veither (inj _sym error)) :: VexceptT e m a
 
--- Dropping the `Either` removes one layer of boxing at runtime
+-- Unsure whether `Right a` is more performant than `{type: "_", value: a}`
 pure (Right              a)) :: ExceptV  e m a
 pure ({type: "_", value: a}) :: VexceptT e m a
 ```
