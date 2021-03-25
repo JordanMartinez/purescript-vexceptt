@@ -2,7 +2,13 @@
 
 A version of [`ExceptT`](https://pursuit.purescript.org/packages/purescript-transformers/docs/Control.Monad.Except.Trans#t:ExceptT) that uses [`Veither`](https://pursuit.purescript.org/packages/purescript-veither/docs/Data.Veither) instead of [`Either`](https://pursuit.purescript.org/packages/purescript-either/docs/Data.Either#t:Either).
 
-Inspired by and only slightly different from [`ExceptV`](https://pursuit.purescript.org/packages/purescript-checked-exceptions/3.1.0/docs/Control.Monad.Except.Checked#t:ExceptV)
+Inspired by and only slightly different in definition from [`ExceptV`](https://pursuit.purescript.org/packages/purescript-checked-exceptions/3.1.0/docs/Control.Monad.Except.Checked#t:ExceptV). However, `VexceptT` fully reimplements all API of `ExceptT` except for these type classes:
+- `Alt`
+- `Plus`
+- `Alternative`
+- `MonadPlus`
+
+## `ExceptV` vs `VexceptT`
 
 ```purescript
 -- # Main types compared
