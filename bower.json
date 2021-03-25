@@ -1,0 +1,30 @@
+{
+  "name": "purescript-vexceptt",
+  "homepage": "https://github.com/JordanMartinez/purescript-vexceptt",
+  "authors": [
+    "Jordan Martinez <jordanalex.martinez@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JordanMartinez/purescript-vexceptt.git"
+  },
+  "dependencies": {
+    "purescript-transformers": "v5.0.0",
+    "purescript-unsafe-coerce": "v5.0.0",
+    "purescript-veither": "https://github.com/JordanMartinez/purescript-veither.git#1.0.3"
+  },
+  "devDependencies": {
+    "purescript-quickcheck": "v7.0.0",
+    "purescript-quickcheck-laws": "v6.0.0",
+    "purescript-spec": "v5.0.0"
+  }
+}
