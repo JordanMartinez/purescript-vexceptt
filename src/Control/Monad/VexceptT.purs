@@ -114,12 +114,10 @@ instance monadContVexceptT :: MonadCont m => MonadCont (VexceptT e m) where
 
 instance monadThrowVexceptT :: Monad m => MonadThrow (Variant e) (VexceptT e m) where
   throwError :: forall a. (Variant e) -> VexceptT e m a
-  throwError = VexceptT <<< pure <<< pure <<< unsafeCoerce -- hack since I couldn't
-                                              -- access the `a` type in a where clause
-    -- this doesn't compile if I use it.
-    -- where
-      -- coerceV :: forall a. Variant e -> Variant ("_" :: a | e)
-      -- coerceV = unsafeCoerce
+  throwError = VexceptT <<< pure <<< Veither <<< coerceV
+    where
+      coerceV :: forall a. Variant e -> Variant ("_" :: a | e)
+      coerceV = unsafeCoerce
 
 instance monadErrorVexceptT :: Monad m => MonadError (Variant e) (VexceptT e m) where
   catchError (VexceptT m) k =
