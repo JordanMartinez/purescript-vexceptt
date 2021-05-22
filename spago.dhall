@@ -4,12 +4,17 @@ You can edit this file as you like.
 -}
 { name = "my-project"
 , dependencies =
-  [ "psci-support"
-  , "quickcheck"
-  , "quickcheck-laws"
+  [ "aff"
+  , "effect"
+  , "newtype"
+  , "prelude"
+  , "psci-support"
   , "spec"
+  , "tailrec"
   , "transformers"
+  , "tuples"
   , "unsafe-coerce"
+  , "variant"
   , "veither"
   ]
 , packages = ./packages.dhall
