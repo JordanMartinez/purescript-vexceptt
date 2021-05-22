@@ -19,6 +19,7 @@ import Data.Tuple (Tuple(..))
 import Data.Variant (Variant, inj)
 import Data.Veither (Veither(..), _veither, veither)
 import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Aff.Class (class MonadAff, liftAff)
 import Unsafe.Coerce (unsafeCoerce)
 
 -- | Same as `ExceptT`, but uses `Veither` rather than `Either`.
@@ -118,6 +119,9 @@ instance monadTransVexceptT :: MonadTrans (VexceptT e) where
 
 instance monadEffectVexceptT :: MonadEffect m => MonadEffect (VexceptT e m) where
   liftEffect = lift <<< liftEffect
+
+instance monadAffVexceptT :: MonadAff m => MonadAff (VexceptT e m) where
+  liftAff = lift <<< liftAff
 
 instance monadContVexceptT :: MonadCont m => MonadCont (VexceptT e m) where
   callCC f = VexceptT $ callCC \c ->
