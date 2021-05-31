@@ -1,4 +1,4 @@
-module Control.Monad.VexceptT 
+module Control.Monad.VexceptT
   ( VexceptT(..), runVexceptT, withVexceptT, mapVexceptT, vexcept
   , module Control.Monad.Trans.Class
   , module Control.Monad.Error.Class
@@ -105,7 +105,7 @@ instance monadRecVexceptT :: MonadRec m => MonadRec (VexceptT e m) where
         pure (veither handleLeft handleRight v)
 
 -- Alt instance - issue: no Semigroup instance for `errorRows`
-  
+
 -- Plus instance - needs Alt instance first
 
 -- Alternative instance - issue: no Monoid instance for `errorRows`
