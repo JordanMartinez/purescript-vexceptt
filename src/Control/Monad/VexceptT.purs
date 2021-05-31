@@ -22,6 +22,7 @@ import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Aff.Class (class MonadAff, liftAff)
 import Unsafe.Coerce (unsafeCoerce)
 
+newtype VexceptT :: Row Type -> (Type -> Type) -> Type -> Type
 -- | Same as `ExceptT`, but uses `Veither` rather than `Either`.
 -- |
 -- | This type has instances for all the type classes that `ExceptT` has
@@ -32,7 +33,6 @@ import Unsafe.Coerce (unsafeCoerce)
 -- | - MonadPlus
 -- |
 -- | Note: throwing and catching errors will need to throw and catch `Variants`.
-newtype VexceptT :: Row Type -> (Type -> Type) -> Type -> Type
 newtype VexceptT errorRows m a = VexceptT (m (Veither errorRows a))
 
 -- | Removes the `VexceptT` newtype wrapper.
