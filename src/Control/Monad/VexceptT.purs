@@ -32,7 +32,7 @@ newtype VexceptT :: Row Type -> (Type -> Type) -> Type -> Type
 -- | - Alternative
 -- | - MonadPlus
 -- |
--- | Note: throwing and catching errors will need to throw and catch `Variants`.
+-- | Note: throwing and catching errors will need to throw and catch `Variant`s.
 newtype VexceptT errorRows m a = VexceptT (m (Veither errorRows a))
 
 -- | Removes the `VexceptT` newtype wrapper.
