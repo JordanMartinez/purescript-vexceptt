@@ -63,14 +63,11 @@ instance functorVexceptT ∷ Functor m => Functor (VexceptT errorRows m) where
   map ∷ forall a b. (a → b) → VexceptT errorRows m a → VexceptT errorRows m b
   map f = mapVexceptT (map (map f))
 
-instance applyVexceptT ∷ Apply m => Apply (VexceptT errorRows m) where
+instance applyVexceptT ∷ Monad m => Apply (VexceptT errorRows m) where
   apply ∷ forall a b. VexceptT errorRows m (a → b) → VexceptT errorRows m a → VexceptT errorRows m b
-  apply (VexceptT mf) (VexceptT ma) = VexceptT ado
-    f <- mf
-    a <- ma
-    in apply f a
+  apply = ap
 
-instance applicativeVexceptT ∷ Applicative m => Applicative (VexceptT errorRows m) where
+instance applicativeVexceptT ∷ Monad m => Applicative (VexceptT errorRows m) where
   pure ∷ forall a. a → VexceptT errorRows m a
   pure = VexceptT <<< pure <<< pure
 
